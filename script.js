@@ -8,21 +8,25 @@ function getComputerChoise(){
         case 1:choise="rock";break;
         case 2:choise="paper";break;
         case 3:choise="scissor";break;
-    }
-    console.log(choise);
+    };
     return choise;
 };
 
-let playerSelection = prompt("Choose Hooman :");
-playerSelection = playerSelection.toLowerCase();
-console.log(playerSelection);
-let computerSelection = getComputerChoise();
-console.log(computerSelection);
+let playerSelection;
+function getPlayersChoise(){
+    playerSelection = prompt("Choose Hooman :");
+    playerSelection = playerSelection.toLowerCase();
+    return playerSelection;
+}
+
+
 const winmsg="Human ,you won.";
 const losemsg="You lost ,fool.The computer is smarter!";
 const tiemsg="Its a tie.We will still treat you as a fool!";
 
 function playRound(){
+    let computerSelection = getComputerChoise();
+    console.log(computerSelection);
     if (playerSelection === computerSelection) {
         return tiemsg;
         } else if ((playerSelection==="rock" && computerSelection==="scissor") || (playerSelection==="paper" && computerSelection==="rock") || (playerSelection==="scissor" && computerSelection==="paper")) {
@@ -30,4 +34,13 @@ function playRound(){
         } else return losemsg;
 };
 
-console.log(playRound());
+function game(){
+for (let i=1 ;i<6;i++){
+    console.log(getPlayersChoise());
+    console.log(playRound());
+    console.log("round",i);
+}
+return "game is over";
+}
+
+console.log(game());
