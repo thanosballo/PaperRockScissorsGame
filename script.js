@@ -1,7 +1,6 @@
 function getRndInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1) ) + min;
 };
-
 function getComputerChoise(){
     let choise=getRndInteger(1,3);
     switch (choise){
@@ -12,13 +11,18 @@ function getComputerChoise(){
     return choise;
 };
 
-let playerSelection;
-function getPlayersChoise(){
-    playerSelection = prompt("Choose Hooman :");
-    playerSelection = playerSelection.toLowerCase();
-    return playerSelection;
-}
-
+let userSelection;
+const screen=document.querySelector(".display-screen");
+const messageOut=document.createElement("p");
+const buttons=Array.from(document.querySelectorAll("button"));
+buttons.forEach((button) => {
+    button.addEventListener("click", ()=>{
+        userSelection=button.dataset.selection;
+        console.log(userSelection);
+        messageOut.textContent=playRound();
+        screen.appendChild(messageOut);
+    })
+});
 
 const winmsg="Human ,you won.";
 const losemsg="You lost ,fool.The computer is smarter!";
@@ -26,21 +30,10 @@ const tiemsg="Its a tie.We will still treat you as a fool!";
 
 function playRound(){
     let computerSelection = getComputerChoise();
-    console.log(computerSelection);
-    if (playerSelection === computerSelection) {
+    console.log("Computer choose:" + computerSelection);
+    if (userSelection === computerSelection) {
         return tiemsg;
-        } else if ((playerSelection==="rock" && computerSelection==="scissor") || (playerSelection==="paper" && computerSelection==="rock") || (playerSelection==="scissor" && computerSelection==="paper")) {
+        } else if ((userSelection==="rock" && computerSelection==="scissor") || (userSelection==="paper" && computerSelection==="rock") || (userSelection==="scissor" && computerSelection==="paper")) {
             return winmsg;
         } else return losemsg;
 };
-
-function game(){
-for (let i=1 ;i<6;i++){
-    console.log(getPlayersChoise());
-    console.log(playRound());
-    console.log("round",i);
-}
-return "game is over";
-}
-
-console.log(game());
