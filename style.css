@@ -31,7 +31,22 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 0.5rem;
 }
 .active-selection{
     background-color: burlywood;
+}
+.reset {
+    background-color: blue;
+    color: white;
+    padding: 1rem;
+    width: 20%;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    border: solid 2px blue;
+}
+.reset:hover{
+    background-color: white;
+    color:blue;
+    border: solid 2px blue;
 }

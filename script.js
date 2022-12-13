@@ -4,16 +4,31 @@ function getRndInteger(min, max) {
 function getComputerChoise(){
     let choise=getRndInteger(1,3);
     switch (choise){
-        case 1:choise="rock";break;
-        case 2:choise="paper";break;
-        case 3:choise="scissor";break;
+        case 1:choise="rock";
+        computerRock.classList.add("active-selection");
+        break;
+        case 2:choise="paper";
+        computerPaper.classList.add("active-selection");
+        break;
+        case 3:choise="scissor";
+        computerScissors.classList.add("active-selection");
+        break;
     };
     return choise;
 };
 const winmsg="Human ,you won.";
 const losemsg="You lost ,fool.The computer is smarter!";
 const tiemsg="Its a tie.We will still treat you as a fool!";
-
+const computerRock=document.querySelector("#computer-rock");
+const computerPaper=document.querySelector("#computer-paper");
+const computerScissors=document.querySelector("#computer-scissors");
+const resetBtn=document.querySelector(".reset");
+resetBtn.addEventListener("click",()=>{
+    removeClass();
+    resetCounters();
+    messageOut.textContent="Reset";
+    screen.appendChild(messageOut);
+})
 let userSelection;
 let roundCounter=0;
 let humanWins=0;
@@ -22,6 +37,7 @@ let computerWins=0;
 const screen=document.querySelector(".display-screen");
 const messageOut=document.createElement("p");
 const buttons=Array.from(document.querySelectorAll(".button"));
+const pcSelections=Array.from(document.querySelectorAll(".pcselection"));
 console.log(buttons)
 buttons.forEach((button) => {
     button.addEventListener("click", ()=>{
@@ -51,6 +67,9 @@ function removeClass(){
         button.classList.remove("active-selection");
         console.log("ss");
     });
+    pcSelections.forEach((pcselection)=>{
+        pcselection.classList.remove("active-selection");
+    });
 };
 
 function playRound(){
@@ -72,4 +91,5 @@ function resetCounters(){
     humanWins=0;
     computerWins=0;
     ties=0;
+    
 }
