@@ -38,7 +38,6 @@ const screen=document.querySelector(".display-screen");
 const messageOut=document.createElement("p");
 const buttons=Array.from(document.querySelectorAll(".button"));
 const pcSelections=Array.from(document.querySelectorAll(".pcselection"));
-console.log(buttons)
 buttons.forEach((button) => {
     button.addEventListener("click", ()=>{
         removeClass();
@@ -46,6 +45,7 @@ buttons.forEach((button) => {
         roundCounter=roundCounter+1;
         userSelection=button.dataset.selection;
         messageOut.textContent=playRound();
+        console.log(roundCounter);
         screen.appendChild(messageOut);
         if (roundCounter===5) {
             if (humanWins>computerWins){
@@ -57,7 +57,6 @@ buttons.forEach((button) => {
             screen.appendChild(messageOut);
             resetCounters();
         }
-        
     })
 });
 
@@ -65,7 +64,6 @@ buttons.forEach((button) => {
 function removeClass(){
     buttons.forEach((button)=>{
         button.classList.remove("active-selection");
-        console.log("ss");
     });
     pcSelections.forEach((pcselection)=>{
         pcselection.classList.remove("active-selection");
