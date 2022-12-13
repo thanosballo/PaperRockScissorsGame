@@ -21,15 +21,16 @@ let ties=0;
 let computerWins=0;
 const screen=document.querySelector(".display-screen");
 const messageOut=document.createElement("p");
-const buttons=Array.from(document.querySelectorAll("button"));
+const buttons=Array.from(document.querySelectorAll(".button"));
+console.log(buttons)
 buttons.forEach((button) => {
     button.addEventListener("click", ()=>{
+        removeClass();
+        button.classList.add("active-selection");
         roundCounter=roundCounter+1;
         userSelection=button.dataset.selection;
-        console.log(userSelection);
         messageOut.textContent=playRound();
         screen.appendChild(messageOut);
-        console.log(humanWins,computerWins,ties);
         if (roundCounter===5) {
             if (humanWins>computerWins){
                 messageOut.textContent=`The final result is human ${humanWins} , ties : ${ties} and computer ${computerWins}.Human Wins!`
@@ -40,8 +41,17 @@ buttons.forEach((button) => {
             screen.appendChild(messageOut);
             resetCounters();
         }
+        
     })
 });
+
+
+function removeClass(){
+    buttons.forEach((button)=>{
+        button.classList.remove("active-selection");
+        console.log("ss");
+    });
+};
 
 function playRound(){
     let computerSelection = getComputerChoise();
